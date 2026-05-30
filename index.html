@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JEP Tracker — LINKED ERP</title>
+<title>JEP Tracker â€” LINKED ERP</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,'Segoe UI',sans-serif;background:#070c17;color:#c0cfe0;height:100vh;display:flex;flex-direction:column;overflow:hidden;font-size:12px}
@@ -14,7 +14,7 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#070c17;color:#c
 .at{font-size:13px;font-weight:700;color:#e2e8f0;text-align:center;margin-bottom:2px}
 .as{font-size:10px;color:#1e3050;text-align:center;margin-bottom:15px}
 .ag{margin-bottom:8px}
-.al{display:block;font-size:7.5px;font-weight:700;color:#1e3050;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+.al{display:block;font-size:10px;font-weight:700;color:#4a6a8a;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
 .ai{width:100%;background:#060b14;border:1px solid #111e30;color:#c0cfe0;padding:7px 10px;border-radius:5px;font-size:12px;font-family:inherit}
 .ai:focus{outline:none;border-color:#dc2626}
 .ae{font-size:9.5px;color:#f87171;min-height:13px;text-align:center;margin:3px 0 4px}
@@ -30,7 +30,7 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#070c17;color:#c
 .tbb{background:#0d1a2e;border:none;color:#1e3050;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:9.5px;font-weight:700;transition:all .1s;white-space:nowrap}
 .tbb:hover{color:#c0cfe0;background:#172840}
 .tbb.x:hover{background:#230a0a;color:#f87171}
-.svl{font-size:8.5px;min-width:46px;color:#0d1a2e;transition:color .2s}
+.svl{font-size:8.5px;min-width:46px;color:#4a6a8a;transition:color .2s}
 .svl.sv{color:#1e3050}.svl.ok{color:#10b981}
 .tbr{margin-left:auto;display:flex;align-items:center;gap:7px;flex-shrink:0}
 .uname{font-size:9.5px;color:#1e3050;font-weight:600}
@@ -40,9 +40,9 @@ body{font-family:-apple-system,'Segoe UI',sans-serif;background:#070c17;color:#c
 .sb{width:264px;background:#080f1e;border-right:1px solid #0f1a2e;display:flex;flex-direction:column;flex-shrink:0}
 .sbs{flex:1;overflow-y:auto}
 .ssc{padding:8px 12px;border-bottom:1px solid #0a1220}
-.ssh{font-size:7.5px;font-weight:700;color:#192840;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px}
+.ssh{font-size:10px;font-weight:700;color:#4a6a8a;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px}
 .fg{margin-bottom:5px}
-.fl{display:block;font-size:7.5px;color:#192840;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
+.fl{display:block;font-size:10px;color:#192840;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
 .fi{width:100%;background:#060b14;border:1px solid #0f1a2e;color:#8da8bf;padding:5px 8px;border-radius:4px;font-size:11px;font-family:inherit}
 .fi:focus{outline:none;border-color:#1e3050}
 input[type=date].fi{color-scheme:dark}
@@ -52,7 +52,7 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
 .stb.on{border-color:#065f46;color:#34d399;background:#010e08}
 .stb.at{border-color:#7c3503;color:#fbbf24;background:#120c00}
 .stb.de{border-color:#7f1d1d;color:#f87171;background:#120000}
-.ssh2{padding:6px 12px;font-size:7.5px;font-weight:700;color:#192840;text-transform:uppercase;letter-spacing:1.2px;background:#060b14;border-bottom:1px solid #0a1220}
+.ssh2{padding:6px 12px;font-size:10px;font-weight:700;color:#4a6a8a;text-transform:uppercase;letter-spacing:1.2px;background:#060b14;border-bottom:1px solid #0a1220}
 .srow{border-bottom:1px solid #080f1e;padding:5px 9px;cursor:pointer;position:relative;transition:background .1s}
 .srow:hover{background:#0a1525}
 .srow.cu{background:#0f0103;border-left:2px solid #dc2626}
@@ -63,7 +63,7 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
 .sni:focus{outline:none;border-bottom:1px dashed #1e3050;color:#c0cfe0;cursor:text}
 .cu .sni{color:#fca5a5}
 .r2{display:flex;align-items:center;gap:3px;padding-left:11px}
-.rl{font-size:7px;color:#192840;font-weight:600;white-space:nowrap}
+.rl{font-size:9px;color:#4a6a8a;font-weight:600;white-space:nowrap}
 .di{width:33px;background:#060b14;border:1px solid #0f1a2e;color:#1e3050;padding:2px 3px;border-radius:3px;font-size:9.5px;font-family:inherit;text-align:center}
 .di:focus{outline:none;color:#c0cfe0;border-color:#1e3050}
 .di:disabled{opacity:.12}
@@ -77,7 +77,7 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
 .exb:disabled{opacity:.4;cursor:not-allowed}
 .prb{height:3px;background:#0f1a2e;border-radius:2px;overflow:hidden;display:none}
 .prbf{height:100%;background:#dc2626;width:0;transition:width .1s}
-.prtx{font-size:8px;color:#192840;text-align:center;display:none}
+.prtx{font-size:10px;color:#192840;text-align:center;display:none}
 .mn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;overflow:auto;gap:10px;background:#060b14}
 .card{background:#fff;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.8);width:700px;max-width:calc(100vw - 280px);overflow:visible}
 .cst{height:3px;background:#dc2626;border-radius:10px 10px 0 0}
@@ -86,17 +86,17 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
 .clg{display:flex;align-items:center}
 .lw{height:26px;display:flex;align-items:center;padding-right:8px;flex-shrink:0}
 .lw img{max-height:24px;max-width:84px;object-fit:contain}
-.lph{font-size:8px;font-weight:900;letter-spacing:-.2px}
+.lph{font-size:10px;font-weight:900;letter-spacing:-.2px}
 .lsep{width:1px;height:16px;background:#e5e7eb;margin-right:8px;flex-shrink:0}
 .ctrr{text-align:right}
-.cprs{font-size:7px;color:#dc2626;font-weight:800;letter-spacing:2.5px}
+.cprs{font-size:9px;color:#dc2626;font-weight:800;letter-spacing:2.5px}
 .cnm{font-size:16px;font-weight:900;color:#0f172a;line-height:1.1}
 .tlw{position:relative;height:78px;margin:2px 0 4px;overflow:visible}
 .tltr{position:absolute;top:30px;left:0;right:0;height:2px;background:#f1f5f9;border-radius:1px}
 .tlfill{position:absolute;left:0;top:0;height:100%;background:#dc2626;border-radius:1px}
 .tlsi{position:absolute;inset:0;overflow:visible}
 .si{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;overflow:visible}
-.sidt{height:22px;display:flex;align-items:flex-end;font-size:6.5px;font-weight:600;white-space:nowrap;color:#e0e0e0;padding-bottom:1px}
+.sidt{height:22px;display:flex;align-items:flex-end;font-size:8.5px;font-weight:600;white-space:nowrap;color:#e0e0e0;padding-bottom:1px}
 .sidt.dn{color:#6b7280}.sidt.cu{color:#dc2626}.sidt.sk{color:#f5f5f5}
 .sido{width:9px;height:9px;border-radius:50%;background:#e5e7eb;border:2px solid #fff;box-shadow:0 0 0 1px #e5e7eb;z-index:2;flex-shrink:0}
 .sido.dn{background:#dc2626;box-shadow:0 0 0 1px #dc2626}
@@ -104,18 +104,18 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
 .sido.sk{opacity:.3}
 @keyframes sp{0%,100%{box-shadow:0 0 0 1px #dc2626}50%{box-shadow:0 0 0 7px rgba(220,38,38,.08),0 0 0 1px #dc2626}}
 .siln{width:1px;background:#e5e7eb;flex-shrink:0}
-.sinm{font-size:5.5px;font-weight:700;color:#d1d5db;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.sinm{font-size:8px;font-weight:700;color:#d1d5db;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
 .sinm.dn{color:#9ca3af}.sinm.cu{color:#dc2626}.sinm.sk{color:#ebebeb}
 .cft{display:flex;justify-content:space-between;align-items:flex-end;padding-top:6px;border-top:1px solid #f3f4f6}
 .cfl{display:flex;gap:16px}
-.cflbl{font-size:6.5px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:2px}
-.cfval{font-size:10px;font-weight:800;color:#111827;display:flex;align-items:center;gap:4px}
+.cflbl{font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:2px}
+.cfval{font-size:12px;font-weight:800;color:#111827;display:flex;align-items:center;gap:4px}
 .sind{width:7px;height:7px;border-radius:50%}
 .sg{background:#10b981;animation:ip 2.5s ease-in-out infinite}
 .sa{background:#f59e0b;animation:ip 2.5s ease-in-out infinite}
 .sdd{background:#ef4444;animation:ip 2.5s ease-in-out infinite}
 @keyframes ip{0%,100%{opacity:1}50%{opacity:.5}}
-.cfbrd{font-size:6px;color:#c4c4c4;letter-spacing:1.5px;font-weight:700;text-transform:uppercase}
+.cfbrd{font-size:8.5px;color:#c4c4c4;letter-spacing:1.5px;font-weight:700;text-transform:uppercase}
 .hint{font-size:9.5px;color:#111e30;text-align:center}
 </style>
 </head>
@@ -128,7 +128,7 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
     <div class="at">Welcome back</div>
     <div class="as">NetSuite Evaluation Tracker</div>
     <div class="ag"><label class="al">Email</label><input class="ai" id="lem" type="email" placeholder="you@linkederp.com" onkeydown="if(event.key==='Enter')doLogin()"></div>
-    <div class="ag"><label class="al">Password</label><input class="ai" id="lpw" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="ag"><label class="al">Password</label><input class="ai" id="lpw" type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" onkeydown="if(event.key==='Enter')doLogin()"></div>
     <div class="ae" id="lerr"></div>
     <button class="abtn" onclick="doLogin()">Sign in</button>
     <div class="ap">Don't have an account? <a onclick="showR()">Create one</a></div>
@@ -143,7 +143,7 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
     <div class="ag"><label class="al">Confirm password</label><input class="ai" id="rpw2" type="password" onkeydown="if(event.key==='Enter')doReg()"></div>
     <div class="ae" id="rerr"></div>
     <button class="abtn" onclick="doReg()">Create account</button>
-    <div class="ap"><a onclick="showL()">← Back to sign in</a></div>
+    <div class="ap"><a onclick="showL()">â† Back to sign in</a></div>
   </div>
 </div>
 
@@ -155,12 +155,12 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
     <div class="pw">
       <select class="psel" id="pSel" onchange="switchP(this.value)"></select>
       <button class="tbb" onclick="newP()">+ New</button>
-      <button class="tbb x" onclick="delP()">✕</button>
+      <button class="tbb x" onclick="delP()">âœ•</button>
     </div>
     <span class="svl" id="svl"></span>
     <div class="tbr">
       <span class="uname" id="unm"></span>
-      <button class="tbout" onclick="logout()">Logout →</button>
+      <button class="tbout" onclick="logout()">Logout â†’</button>
     </div>
   </div>
   <div class="bw">
@@ -172,7 +172,7 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
           <div class="fg"><label class="fl">Client logo</label><input type="file" id="clf" accept="image/*"></div>
         </div>
         <div class="ssc" id="admsec" style="display:none">
-          <div class="ssh">Company logos · Admin only</div>
+          <div class="ssh">Company logos Â· Admin only</div>
           <div class="fg"><label class="fl">LINKED ERP logo</label><input type="file" id="llf" accept="image/*"></div>
           <div class="fg"><label class="fl">Oracle NetSuite logo</label><input type="file" id="nlf" accept="image/*"></div>
         </div>
@@ -187,11 +187,11 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
             </div>
           </div>
         </div>
-        <div class="ssh2">Stages — click row to set current</div>
+        <div class="ssh2">Stages â€” click row to set current</div>
         <div id="sl"></div>
       </div>
       <div class="sbf">
-        <button class="exb" id="gifBtn" onclick="genGIF()">⬇ Export Animated GIF for Outlook</button>
+        <button class="exb" id="gifBtn" onclick="genGIF()">â¬‡ Export Animated GIF for Outlook</button>
         <div class="prb" id="prb"><div class="prbf" id="prbf"></div></div>
         <div class="prtx" id="prtx"></div>
       </div>
@@ -211,23 +211,23 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
           <div class="cft">
             <div class="cfl">
               <div><div class="cflbl">Estimated completion</div>
-                <div class="cfval"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="pETC">—</span></div>
+                <div class="cfval"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="pETC">â€”</span></div>
               </div>
               <div><div class="cflbl">Status</div>
                 <div class="cfval"><div class="sind sg" id="stDot"></div><span id="stTx" style="color:#10b981">ON TRACK</span></div>
               </div>
             </div>
-            <div class="cfbrd">LINKED ERP &nbsp;×&nbsp; ORACLE NETSUITE</div>
+            <div class="cfbrd">LINKED ERP &nbsp;Ã—&nbsp; ORACLE NETSUITE</div>
           </div>
         </div>
       </div>
-      <div class="hint">Live preview · Export GIF → Insert via Insert › Pictures in Outlook</div>
+      <div class="hint">Live preview Â· Export GIF â†’ Insert via Insert â€º Pictures in Outlook</div>
     </div>
   </div>
 </div>
 
 <script>
-// ── Defaults ──
+// â”€â”€ Defaults â”€â”€
 const DEF=[
   {n:'Intro Call',d:0},{n:'Discovery',d:7},{n:'Demo',d:7},
   {n:'Alignment',d:14},{n:'Proposal',d:14},{n:'Selection',d:14},
@@ -235,33 +235,33 @@ const DEF=[
   {n:'Kick-Off',d:1},{n:'Implementation',d:120}
 ];
 
-// ── State ──
+// â”€â”€ State â”€â”€
 let ST=DEF.map(s=>({...s,ov:null}));
 let ci=0,cst='ON TRACK',lDU=null,nDU=null,cDU=null;
 let me=null,curPid=null,pidx=[],svT=null,rdy=false;
 
-// ── Helpers ──
+// â”€â”€ Helpers â”€â”€
 const gid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const addD=(d,n)=>{const r=new Date(d);r.setDate(r.getDate()+n);return r;};
 const fmD=d=>d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'';
 const isoD=d=>{try{return new Date(d).toISOString().split('T')[0];}catch{return '';}};
 const tod=()=>new Date().toISOString().split('T')[0];
-const d2w=n=>{if(!n||n<=0)return'—';const w=Math.floor(n/7),d=n%7;return w&&d?`${w}w ${d}d`:w?`${w}w`:`${d}d`;};
+const d2w=n=>{if(!n||n<=0)return'â€”';const w=Math.floor(n/7),d=n%7;return w&&d?`${w}w ${d}d`:w?`${w}w`:`${d}d`;};
 
-// ── localStorage storage ──
+// â”€â”€ localStorage storage â”€â”€
 const sg=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}};
 const gg=k=>{try{const r=localStorage.getItem(k);return r?JSON.parse(r):null;}catch{return null;}};
 const dg=k=>{try{localStorage.removeItem(k);}catch{}};
 
-// ── Crypto ──
+// â”€â”€ Crypto â”€â”€
 const hpw=async p=>{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');};
 
-// ── User management ──
+// â”€â”€ User management â”€â”€
 let _users=null;
 function loadUsers(){if(_users)return _users;_users=gg('jep:users')||[];return _users;}
 function saveUsers(u){_users=u;sg('jep:users',u);}
 
-// ── Auth UI ──
+// â”€â”€ Auth UI â”€â”€
 function showL(){document.getElementById('LB').style.display='';document.getElementById('RB').style.display='none';document.getElementById('lerr').textContent='';}
 function showR(){document.getElementById('LB').style.display='none';document.getElementById('RB').style.display='';document.getElementById('rerr').textContent='';}
 
@@ -303,7 +303,7 @@ async function doReg(){
 
 function logout(){me=null;curPid=null;rdy=false;document.getElementById('App').style.display='none';document.getElementById('A').style.display='flex';showL();}
 
-// ── Enter app ──
+// â”€â”€ Enter app â”€â”€
 function enterApp(){
   document.getElementById('A').style.display='none';
   document.getElementById('App').style.display='flex';
@@ -320,7 +320,7 @@ function enterApp(){
   pidx=idx;rebuildSel();rdy=true;upd();setSvL('','');
 }
 
-// ── State ──
+// â”€â”€ State â”€â”€
 function snap(){return{nm:document.getElementById('cname').value,cl:cDU,sd:document.getElementById('startD').value,ci,cst,st:ST.map(s=>({n:s.n,d:s.d,ov:s.ov||null}))};}
 function applySnap(s){
   if(!s)return;
@@ -333,7 +333,7 @@ function applySnap(s){
 function resetSt(){document.getElementById('cname').value='';document.getElementById('startD').value=tod();ci=0;cst='ON TRACK';cDU=null;ST=DEF.map(d=>({...d,ov:null}));syncStBtns();}
 function syncStBtns(){const m={'ON TRACK':'on','AT RISK':'at','DELAYED':'de'};document.querySelectorAll('.stb').forEach(b=>{b.className='stb';if(b.textContent.trim()===cst)b.className='stb '+m[cst];});}
 
-// ── Projects ──
+// â”€â”€ Projects â”€â”€
 function rebuildSel(){document.getElementById('pSel').innerHTML=pidx.map(p=>`<option value="${p.id}"${p.id===curPid?' selected':''}>${(p.n||'Untitled').slice(0,30)}</option>`).join('');}
 function switchP(id){if(!id||id===curPid)return;curPid=id;applySnap(gg('jep:p:'+id));upd();}
 function newP(){const id=gid();pidx.unshift({id,n:'New Project',t:Date.now()});sg('jep:idx:'+me.id,pidx);curPid=id;resetSt();rebuildSel();sg('jep:p:'+id,snap());upd();}
@@ -344,7 +344,7 @@ function delP(){
   sg('jep:idx:'+me.id,pidx);curPid=pidx[0].id;applySnap(gg('jep:p:'+curPid));rebuildSel();upd();
 }
 
-// ── Auto-save ──
+// â”€â”€ Auto-save â”€â”€
 function setSvL(t,c){const e=document.getElementById('svl');e.textContent=t;e.className='svl '+c;}
 function doSave(){
   if(!rdy||!curPid||!me)return;
@@ -352,14 +352,14 @@ function doSave(){
   const nm=document.getElementById('cname').value||'Untitled';
   const e=pidx.find(p=>p.id===curPid);if(e){e.n=nm;e.t=Date.now();}
   sg('jep:idx:'+me.id,pidx);rebuildSel();
-  setSvL('✓ Saved','ok');setTimeout(()=>setSvL('',''),2000);
+  setSvL('âœ“ Saved','ok');setTimeout(()=>setSvL('',''),2000);
 }
-function schedSave(){if(!rdy)return;setSvL('● Saving…','sv');clearTimeout(svT);svT=setTimeout(doSave,600);}
+function schedSave(){if(!rdy)return;setSvL('â— Savingâ€¦','sv');clearTimeout(svT);svT=setTimeout(doSave,600);}
 
-// ── Status ──
+// â”€â”€ Status â”€â”€
 function setSt(s,btn){cst=s;document.querySelectorAll('.stb').forEach(b=>b.className='stb');btn.className='stb '+{'ON TRACK':'on','AT RISK':'at','DELAYED':'de'}[s];upd();}
 
-// ── Date cascade ──
+// â”€â”€ Date cascade â”€â”€
 function getDates(){
   const sv=document.getElementById('startD').value;
   const s0=sv?new Date(sv):new Date();
@@ -373,7 +373,7 @@ function getDates(){
   return out;
 }
 
-// ── Stage list ──
+// â”€â”€ Stage list â”€â”€
 function buildList(dates){
   const el=document.getElementById('sl');el.innerHTML='';
   ST.forEach((s,i)=>{
@@ -394,14 +394,14 @@ function buildList(dates){
       <input class="dti${s.ov?' ov':''}" type="date" value="${dv}" id="dti${i}"
         onchange="ST[${i}].ov=this.value||null;this.classList.toggle('ov',!!this.value);upd()"
         onclick="event.stopPropagation()">
-      <button class="rbt" onclick="event.stopPropagation();ST[${i}].ov=null;(()=>{const x=document.getElementById('dti${i}');x.value='';x.classList.remove('ov');})();upd()">↺</button>
+      <button class="rbt" onclick="event.stopPropagation();ST[${i}].ov=null;(()=>{const x=document.getElementById('dti${i}');x.value='';x.classList.remove('ov');})();upd()">â†º</button>
     </div>`;
     row.addEventListener('click',()=>{ci=i;upd();});
     el.appendChild(row);
   });
 }
 
-// ── Card preview ──
+// â”€â”€ Card preview â”€â”€
 function buildCard(dates){
   document.getElementById('pNm').textContent=(document.getElementById('cname').value||'CLIENT').toUpperCase();
   const la=document.getElementById('logosEl');la.innerHTML='';
@@ -426,7 +426,7 @@ function buildCard(dates){
   });
   const cd=dates[ci],ed=dates[ST.length-1];
   const dd=Math.max(0,Math.round((ed-cd)/86400000));
-  document.getElementById('pETC').textContent=`${d2w(dd)} · ${fmD(ed)}`;
+  document.getElementById('pETC').textContent=`${d2w(dd)} Â· ${fmD(ed)}`;
   const sc={'ON TRACK':'#10b981','AT RISK':'#f59e0b','DELAYED':'#ef4444'};
   const sk2={'ON TRACK':'sind sg','AT RISK':'sind sa','DELAYED':'sind sdd'};
   document.getElementById('stDot').className=sk2[cst];
@@ -435,7 +435,7 @@ function buildCard(dates){
 
 function upd(){const d=getDates();buildList(d);buildCard(d);schedSave();}
 
-// ── Logo handlers ──
+// â”€â”€ Logo handlers â”€â”€
 [['llf','l'],['nlf','n'],['clf','c']].forEach(([id,k])=>{
   document.getElementById(id).onchange=e=>{
     const f=e.target.files[0];if(!f)return;
@@ -449,7 +449,7 @@ function upd(){const d=getDates();buildList(d);buildCard(d);schedSave();}
   };
 });
 
-// ══════════ GIF ENCODER ══════════
+// â•â•â•â•â•â•â•â•â•â• GIF ENCODER â•â•â•â•â•â•â•â•â•â•
 function lzwEncode(pix,mc){
   const CC=1<<mc,EOI=CC+1;let cs=mc+1,nc=EOI+1;
   const dict=new Map(),out=[];let buf=0,bl=0;
@@ -502,7 +502,7 @@ function drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates){
   const FY=H-12;
   ctx.fillStyle='#f3f4f6';ctx.fillRect(16,H-46,W-32,1);
   ctx.fillStyle='#9ca3af';ctx.font='5.5px Arial';ctx.textAlign='left';ctx.fillText('ESTIMATED COMPLETION',TX,FY-14);
-  ctx.fillStyle='#111827';ctx.font='bold 9px Arial';ctx.fillText(`${d2w(dd)} · ${fmD(ed)}`,TX,FY);
+  ctx.fillStyle='#111827';ctx.font='bold 9px Arial';ctx.fillText(`${d2w(dd)} Â· ${fmD(ed)}`,TX,FY);
   const sx=TX+188;
   ctx.fillStyle='#9ca3af';ctx.font='5.5px Arial';ctx.fillText('STATUS',sx,FY-14);
   const sc={'ON TRACK':'#10b981','AT RISK':'#f59e0b','DELAYED':'#ef4444'}[cst];
@@ -510,12 +510,12 @@ function drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates){
   if(f>=DRAW){const t=((f-DRAW)%22)/21;ctx.beginPath();ctx.arc(sx+3.5,FY-3.5,3.5+t*5,0,Math.PI*2);ctx.fillStyle=`rgba(${rgb},${Math.max(0,.28-t*.28)})`;ctx.fill();}
   ctx.beginPath();ctx.arc(sx+3.5,FY-3.5,3.5,0,Math.PI*2);ctx.fillStyle=sc;ctx.fill();
   ctx.fillStyle=sc;ctx.font='bold 9px Arial';ctx.textAlign='left';ctx.fillText(cst,sx+11,FY);
-  ctx.fillStyle='#c4c4c4';ctx.font='bold 5.5px Arial';ctx.textAlign='right';ctx.fillText('LINKED ERP  ×  ORACLE NETSUITE',W-14,FY);
+  ctx.fillStyle='#c4c4c4';ctx.font='bold 5.5px Arial';ctx.textAlign='right';ctx.fillText('LINKED ERP  Ã—  ORACLE NETSUITE',W-14,FY);
 }
 
 async function genGIF(){
   const btn=document.getElementById('gifBtn');
-  btn.disabled=true;btn.textContent='⏳ Generating…';
+  btn.disabled=true;btn.textContent='â³ Generatingâ€¦';
   document.getElementById('prb').style.display='block';
   document.getElementById('prtx').style.display='block';
   const W=700,H=175;
@@ -533,7 +533,7 @@ async function genGIF(){
     setProg(Math.round(f/TOTAL*55),`Rendering frame ${f+1}/${TOTAL}`);
     await new Promise(r=>setTimeout(r,0));
   }
-  setProg(56,'Building palette…');await new Promise(r=>setTimeout(r,0));
+  setProg(56,'Building paletteâ€¦');await new Promise(r=>setTimeout(r,0));
   const cm=new Map(),pal=[];
   const addC=(r,g,b)=>{const k=(r<<16)|(g<<8)|b;if(!cm.has(k)&&pal.length<254){cm.set(k,pal.length);pal.push([r,g,b]);}};
   addC(255,255,255);
@@ -576,12 +576,12 @@ async function genGIF(){
   const fname=(document.getElementById('cname').value||'client').replace(/\s+/g,'_')+'_JEP.gif';
   const a=document.createElement('a');a.href=url;a.download=fname;document.body.appendChild(a);a.click();
   document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),2000);
-  setProg(100,'✓ Downloaded!');
-  btn.disabled=false;btn.textContent='⬇ Export Animated GIF for Outlook';
+  setProg(100,'âœ“ Downloaded!');
+  btn.disabled=false;btn.textContent='â¬‡ Export Animated GIF for Outlook';
   setTimeout(()=>{document.getElementById('prb').style.display='none';document.getElementById('prtx').style.display='none';},2000);
 }
 
-// ── Init ──
+// â”€â”€ Init â”€â”€
 (async()=>{
   await seedAdmin();
   document.getElementById('A').style.display='flex';
@@ -589,3 +589,4 @@ async function genGIF(){
 </script>
 </body>
 </html>
+
