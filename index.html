@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JEP Tracker — LINKED ERP</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:#070c17;color:#c0cfe0;height:100vh;display:flex;flex-direction:column;overflow:hidden;font-size:12px}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:#111e30;border-radius:2px}
+.aw{display:flex;align-items:center;justify-content:center;flex:1;background:radial-gradient(ellipse at 50% 40%,#0e1930,#070c17)}
+.ab{background:#0b1525;border:1px solid #111e30;border-radius:14px;padding:26px 28px;width:318px;box-shadow:0 24px 60px rgba(0,0,0,.65)}
+.alm{font-size:24px;font-weight:900;letter-spacing:3px;color:#dc2626;text-align:center;margin-bottom:12px}
+.at{font-size:13px;font-weight:700;color:#e2e8f0;text-align:center;margin-bottom:2px}
+.as{font-size:10px;color:#1e3050;text-align:center;margin-bottom:15px}
+.ag{margin-bottom:8px}
+.al{display:block;font-size:7.5px;font-weight:700;color:#1e3050;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+.ai{width:100%;background:#060b14;border:1px solid #111e30;color:#c0cfe0;padding:7px 10px;border-radius:5px;font-size:12px;font-family:inherit}
+.ai:focus{outline:none;border-color:#dc2626}
+.ae{font-size:9.5px;color:#f87171;min-height:13px;text-align:center;margin:3px 0 4px}
+.abtn{width:100%;padding:8px;background:#dc2626;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer}
+.abtn:hover{background:#b91c1c}
+.ap{text-align:center;margin-top:10px;font-size:10px;color:#1e3050}
+.ap a{color:#dc2626;cursor:pointer}
+.tb{height:42px;background:#080f1e;border-bottom:1px solid #0f1a2e;display:flex;align-items:center;padding:0 10px;gap:6px;flex-shrink:0}
+.tb-brand{font-size:11px;font-weight:900;color:#dc2626;letter-spacing:2.5px;flex-shrink:0}
+.tbdiv{width:1px;height:16px;background:#111e30;flex-shrink:0}
+.pw{flex:1;display:flex;align-items:center;gap:4px;max-width:310px}
+.psel{flex:1;background:#0b1525;border:1px solid #111e30;color:#8da8bf;padding:4px 7px;border-radius:5px;font-size:10.5px;font-family:inherit;cursor:pointer;min-width:0}
+.tbb{background:#0d1a2e;border:none;color:#1e3050;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:9.5px;font-weight:700;transition:all .1s;white-space:nowrap}
+.tbb:hover{color:#c0cfe0;background:#172840}
+.tbb.x:hover{background:#230a0a;color:#f87171}
+.svl{font-size:8.5px;min-width:46px;color:#0d1a2e;transition:color .2s}
+.svl.sv{color:#1e3050}.svl.ok{color:#10b981}
+.tbr{margin-left:auto;display:flex;align-items:center;gap:7px;flex-shrink:0}
+.uname{font-size:9.5px;color:#1e3050;font-weight:600}
+.tbout{background:none;border:none;font-size:9px;color:#111e30;cursor:pointer;padding:3px 6px;border-radius:3px}
+.tbout:hover{color:#ef4444;background:#1a0505}
+.bw{flex:1;display:flex;overflow:hidden}
+.sb{width:264px;background:#080f1e;border-right:1px solid #0f1a2e;display:flex;flex-direction:column;flex-shrink:0}
+.sbs{flex:1;overflow-y:auto}
+.ssc{padding:8px 12px;border-bottom:1px solid #0a1220}
+.ssh{font-size:7.5px;font-weight:700;color:#192840;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px}
+.fg{margin-bottom:5px}
+.fl{display:block;font-size:7.5px;color:#192840;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
+.fi{width:100%;background:#060b14;border:1px solid #0f1a2e;color:#8da8bf;padding:5px 8px;border-radius:4px;font-size:11px;font-family:inherit}
+.fi:focus{outline:none;border-color:#1e3050}
+input[type=date].fi{color-scheme:dark}
+input[type=file]{color:#192840;font-size:9.5px;width:100%}
+.stbs{display:flex;gap:3px}
+.stb{flex:1;padding:4px 2px;border-radius:3px;border:1px solid #0f1a2e;cursor:pointer;font-size:7.5px;font-weight:700;background:#060b14;color:#192840;transition:all .1s;white-space:nowrap}
+.stb.on{border-color:#065f46;color:#34d399;background:#010e08}
+.stb.at{border-color:#7c3503;color:#fbbf24;background:#120c00}
+.stb.de{border-color:#7f1d1d;color:#f87171;background:#120000}
+.ssh2{padding:6px 12px;font-size:7.5px;font-weight:700;color:#192840;text-transform:uppercase;letter-spacing:1.2px;background:#060b14;border-bottom:1px solid #0a1220}
+.srow{border-bottom:1px solid #080f1e;padding:5px 9px;cursor:pointer;position:relative;transition:background .1s}
+.srow:hover{background:#0a1525}
+.srow.cu{background:#0f0103;border-left:2px solid #dc2626}
+.r1{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.sdot{width:6px;height:6px;border-radius:50%;background:#0f1a2e;flex-shrink:0}
+.sdot.dn{background:#dc2626}.sdot.cu2{background:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.12)}.sdot.sk{opacity:.2}
+.sni{flex:1;background:transparent;border:none;color:#2a4060;font-size:9.5px;font-weight:600;font-family:inherit;padding:0;min-width:0;cursor:pointer}
+.sni:focus{outline:none;border-bottom:1px dashed #1e3050;color:#c0cfe0;cursor:text}
+.cu .sni{color:#fca5a5}
+.r2{display:flex;align-items:center;gap:3px;padding-left:11px}
+.rl{font-size:7px;color:#192840;font-weight:600;white-space:nowrap}
+.di{width:33px;background:#060b14;border:1px solid #0f1a2e;color:#1e3050;padding:2px 3px;border-radius:3px;font-size:9.5px;font-family:inherit;text-align:center}
+.di:focus{outline:none;color:#c0cfe0;border-color:#1e3050}
+.di:disabled{opacity:.12}
+.dti{flex:1;background:#060b14;border:1px solid #0f1a2e;color:#0d1828;padding:2px 4px;border-radius:3px;font-size:8.5px;font-family:inherit}
+.dti:focus{outline:none;border-color:#1e3050}
+.dti.ov{border-color:#7c3503;color:#fbbf24}
+.rbt{background:none;border:none;color:#0f1a2e;cursor:pointer;font-size:12px;padding:0 2px;line-height:1;flex-shrink:0}
+.rbt:hover{color:#dc2626}
+.sbf{padding:8px 10px;border-top:1px solid #0f1a2e;display:flex;flex-direction:column;gap:4px}
+.exb{width:100%;padding:8px;border-radius:6px;border:none;font-size:11px;font-weight:700;cursor:pointer;background:#dc2626;color:#fff}
+.exb:disabled{opacity:.4;cursor:not-allowed}
+.prb{height:3px;background:#0f1a2e;border-radius:2px;overflow:hidden;display:none}
+.prbf{height:100%;background:#dc2626;width:0;transition:width .1s}
+.prtx{font-size:8px;color:#192840;text-align:center;display:none}
+.mn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;overflow:auto;gap:10px;background:#060b14}
+.card{background:#fff;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.8);width:700px;max-width:calc(100vw - 280px);overflow:visible}
+.cst{height:3px;background:#dc2626;border-radius:10px 10px 0 0}
+.cbd{padding:14px 20px 12px;overflow:visible}
+.chd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px}
+.clg{display:flex;align-items:center}
+.lw{height:26px;display:flex;align-items:center;padding-right:8px;flex-shrink:0}
+.lw img{max-height:24px;max-width:84px;object-fit:contain}
+.lph{font-size:8px;font-weight:900;letter-spacing:-.2px}
+.lsep{width:1px;height:16px;background:#e5e7eb;margin-right:8px;flex-shrink:0}
+.ctrr{text-align:right}
+.cprs{font-size:7px;color:#dc2626;font-weight:800;letter-spacing:2.5px}
+.cnm{font-size:16px;font-weight:900;color:#0f172a;line-height:1.1}
+.tlw{position:relative;height:78px;margin:2px 0 4px;overflow:visible}
+.tltr{position:absolute;top:30px;left:0;right:0;height:2px;background:#f1f5f9;border-radius:1px}
+.tlfill{position:absolute;left:0;top:0;height:100%;background:#dc2626;border-radius:1px}
+.tlsi{position:absolute;inset:0;overflow:visible}
+.si{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;overflow:visible}
+.sidt{height:22px;display:flex;align-items:flex-end;font-size:6.5px;font-weight:600;white-space:nowrap;color:#e0e0e0;padding-bottom:1px}
+.sidt.dn{color:#6b7280}.sidt.cu{color:#dc2626}.sidt.sk{color:#f5f5f5}
+.sido{width:9px;height:9px;border-radius:50%;background:#e5e7eb;border:2px solid #fff;box-shadow:0 0 0 1px #e5e7eb;z-index:2;flex-shrink:0}
+.sido.dn{background:#dc2626;box-shadow:0 0 0 1px #dc2626}
+.sido.cu{background:#dc2626;box-shadow:0 0 0 1px #dc2626;animation:sp 2s ease-in-out infinite}
+.sido.sk{opacity:.3}
+@keyframes sp{0%,100%{box-shadow:0 0 0 1px #dc2626}50%{box-shadow:0 0 0 7px rgba(220,38,38,.08),0 0 0 1px #dc2626}}
+.siln{width:1px;background:#e5e7eb;flex-shrink:0}
+.sinm{font-size:5.5px;font-weight:700;color:#d1d5db;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.sinm.dn{color:#9ca3af}.sinm.cu{color:#dc2626}.sinm.sk{color:#ebebeb}
+.cft{display:flex;justify-content:space-between;align-items:flex-end;padding-top:6px;border-top:1px solid #f3f4f6}
+.cfl{display:flex;gap:16px}
+.cflbl{font-size:6.5px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:2px}
+.cfval{font-size:10px;font-weight:800;color:#111827;display:flex;align-items:center;gap:4px}
+.sind{width:7px;height:7px;border-radius:50%}
+.sg{background:#10b981;animation:ip 2.5s ease-in-out infinite}
+.sa{background:#f59e0b;animation:ip 2.5s ease-in-out infinite}
+.sdd{background:#ef4444;animation:ip 2.5s ease-in-out infinite}
+@keyframes ip{0%,100%{opacity:1}50%{opacity:.5}}
+.cfbrd{font-size:6px;color:#c4c4c4;letter-spacing:1.5px;font-weight:700;text-transform:uppercase}
+.hint{font-size:9.5px;color:#111e30;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="A" class="aw">
+  <div id="LB" class="ab">
+    <div class="alm">JEP</div>
+    <div class="at">Welcome back</div>
+    <div class="as">NetSuite Evaluation Tracker</div>
+    <div class="ag"><label class="al">Email</label><input class="ai" id="lem" type="email" placeholder="you@linkederp.com" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="ag"><label class="al">Password</label><input class="ai" id="lpw" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="ae" id="lerr"></div>
+    <button class="abtn" onclick="doLogin()">Sign in</button>
+    <div class="ap">Don't have an account? <a onclick="showR()">Create one</a></div>
+  </div>
+  <div id="RB" class="ab" style="display:none">
+    <div class="alm">JEP</div>
+    <div class="at">Create account</div>
+    <div class="as">Join the LINKED ERP team</div>
+    <div class="ag"><label class="al">Full name</label><input class="ai" id="rnm" type="text" placeholder="Your Name"></div>
+    <div class="ag"><label class="al">Email</label><input class="ai" id="rem" type="email" placeholder="you@linkederp.com"></div>
+    <div class="ag"><label class="al">Password (min 6 chars)</label><input class="ai" id="rpw" type="password"></div>
+    <div class="ag"><label class="al">Confirm password</label><input class="ai" id="rpw2" type="password" onkeydown="if(event.key==='Enter')doReg()"></div>
+    <div class="ae" id="rerr"></div>
+    <button class="abtn" onclick="doReg()">Create account</button>
+    <div class="ap"><a onclick="showL()">← Back to sign in</a></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="App" style="display:none;flex:1;flex-direction:column;overflow:hidden">
+  <div class="tb">
+    <span class="tb-brand">JEP</span>
+    <div class="tbdiv"></div>
+    <div class="pw">
+      <select class="psel" id="pSel" onchange="switchP(this.value)"></select>
+      <button class="tbb" onclick="newP()">+ New</button>
+      <button class="tbb x" onclick="delP()">✕</button>
+    </div>
+    <span class="svl" id="svl"></span>
+    <div class="tbr">
+      <span class="uname" id="unm"></span>
+      <button class="tbout" onclick="logout()">Logout →</button>
+    </div>
+  </div>
+  <div class="bw">
+    <div class="sb">
+      <div class="sbs">
+        <div class="ssc">
+          <div class="ssh">Client</div>
+          <div class="fg"><label class="fl">Client name</label><input class="fi" id="cname" placeholder="e.g. FRIDO" oninput="upd()"></div>
+          <div class="fg"><label class="fl">Client logo</label><input type="file" id="clf" accept="image/*"></div>
+        </div>
+        <div class="ssc" id="admsec" style="display:none">
+          <div class="ssh">Company logos · Admin only</div>
+          <div class="fg"><label class="fl">LINKED ERP logo</label><input type="file" id="llf" accept="image/*"></div>
+          <div class="fg"><label class="fl">Oracle NetSuite logo</label><input type="file" id="nlf" accept="image/*"></div>
+        </div>
+        <div class="ssc">
+          <div class="ssh">Timeline</div>
+          <div class="fg"><label class="fl">Project start date</label><input class="fi" type="date" id="startD" oninput="upd()"></div>
+          <div class="fg"><label class="fl">Status</label>
+            <div class="stbs">
+              <button class="stb on" onclick="setSt('ON TRACK',this)">ON TRACK</button>
+              <button class="stb" onclick="setSt('AT RISK',this)">AT RISK</button>
+              <button class="stb" onclick="setSt('DELAYED',this)">DELAYED</button>
+            </div>
+          </div>
+        </div>
+        <div class="ssh2">Stages — click row to set current</div>
+        <div id="sl"></div>
+      </div>
+      <div class="sbf">
+        <button class="exb" id="gifBtn" onclick="genGIF()">⬇ Export Animated GIF for Outlook</button>
+        <div class="prb" id="prb"><div class="prbf" id="prbf"></div></div>
+        <div class="prtx" id="prtx"></div>
+      </div>
+    </div>
+    <div class="mn">
+      <div class="card">
+        <div class="cst"></div>
+        <div class="cbd">
+          <div class="chd">
+            <div class="clg" id="logosEl"></div>
+            <div class="ctrr"><div class="cprs">Project Roadmap</div><div class="cnm" id="pNm">CLIENT</div></div>
+          </div>
+          <div class="tlw">
+            <div class="tlsi" id="tlsi"></div>
+            <div class="tltr"><div class="tlfill" id="tlf"></div></div>
+          </div>
+          <div class="cft">
+            <div class="cfl">
+              <div><div class="cflbl">Estimated completion</div>
+                <div class="cfval"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="pETC">—</span></div>
+              </div>
+              <div><div class="cflbl">Status</div>
+                <div class="cfval"><div class="sind sg" id="stDot"></div><span id="stTx" style="color:#10b981">ON TRACK</span></div>
+              </div>
+            </div>
+            <div class="cfbrd">LINKED ERP &nbsp;×&nbsp; ORACLE NETSUITE</div>
+          </div>
+        </div>
+      </div>
+      <div class="hint">Live preview · Export GIF → Insert via Insert › Pictures in Outlook</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Defaults ──
+const DEF=[
+  {n:'Intro Call',d:0},{n:'Discovery',d:7},{n:'Demo',d:7},
+  {n:'Alignment',d:14},{n:'Proposal',d:14},{n:'Selection',d:14},
+  {n:'Documentation',d:21},{n:'Mobilization',d:28},
+  {n:'Kick-Off',d:1},{n:'Implementation',d:120}
+];
+
+// ── State ──
+let ST=DEF.map(s=>({...s,ov:null}));
+let ci=0,cst='ON TRACK',lDU=null,nDU=null,cDU=null;
+let me=null,curPid=null,pidx=[],svT=null,rdy=false;
+
+// ── Helpers ──
+const gid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const addD=(d,n)=>{const r=new Date(d);r.setDate(r.getDate()+n);return r;};
+const fmD=d=>d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'';
+const isoD=d=>{try{return new Date(d).toISOString().split('T')[0];}catch{return '';}};
+const tod=()=>new Date().toISOString().split('T')[0];
+const d2w=n=>{if(!n||n<=0)return'—';const w=Math.floor(n/7),d=n%7;return w&&d?`${w}w ${d}d`:w?`${w}w`:`${d}d`;};
+
+// ── localStorage storage ──
+const sg=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}};
+const gg=k=>{try{const r=localStorage.getItem(k);return r?JSON.parse(r):null;}catch{return null;}};
+const dg=k=>{try{localStorage.removeItem(k);}catch{}};
+
+// ── Crypto ──
+const hpw=async p=>{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');};
+
+// ── User management ──
+let _users=null;
+function loadUsers(){if(_users)return _users;_users=gg('jep:users')||[];return _users;}
+function saveUsers(u){_users=u;sg('jep:users',u);}
+
+// ── Auth UI ──
+function showL(){document.getElementById('LB').style.display='';document.getElementById('RB').style.display='none';document.getElementById('lerr').textContent='';}
+function showR(){document.getElementById('LB').style.display='none';document.getElementById('RB').style.display='';document.getElementById('rerr').textContent='';}
+
+async function seedAdmin(){
+  const us=loadUsers();
+  const h=await hpw('Linked@123');
+  const adm={id:'adm',name:'Sagar',email:'sagar@linkederp.com',hash:h,role:'admin',t:Date.now()};
+  const i=us.findIndex(u=>u.email==='sagar@linkederp.com');
+  if(i===-1)us.push(adm);else us[i]={...us[i],hash:h,role:'admin'};
+  saveUsers(us);
+}
+
+async function doLogin(){
+  const em=document.getElementById('lem').value.trim().toLowerCase();
+  const pw=document.getElementById('lpw').value;
+  const e=document.getElementById('lerr');
+  if(!em||!pw){e.textContent='Please enter email and password';return;}
+  const us=loadUsers();
+  const u=us.find(x=>x.email===em);
+  if(!u){e.textContent='No account found with this email';return;}
+  if(u.hash!==await hpw(pw)){e.textContent='Incorrect password';return;}
+  me=u;enterApp();
+}
+
+async function doReg(){
+  const nm=document.getElementById('rnm').value.trim();
+  const em=document.getElementById('rem').value.trim().toLowerCase();
+  const pw=document.getElementById('rpw').value;
+  const pw2=document.getElementById('rpw2').value;
+  const e=document.getElementById('rerr');
+  if(!nm||!em||!pw){e.textContent='Please fill all fields';return;}
+  if(pw.length<6){e.textContent='Password must be at least 6 characters';return;}
+  if(pw!==pw2){e.textContent='Passwords do not match';return;}
+  const us=loadUsers();
+  if(us.find(u=>u.email===em)){e.textContent='Account already exists';return;}
+  const nu={id:gid(),name:nm,email:em,hash:await hpw(pw),role:'user',t:Date.now()};
+  us.push(nu);saveUsers(us);me=nu;enterApp();
+}
+
+function logout(){me=null;curPid=null;rdy=false;document.getElementById('App').style.display='none';document.getElementById('A').style.display='flex';showL();}
+
+// ── Enter app ──
+function enterApp(){
+  document.getElementById('A').style.display='none';
+  document.getElementById('App').style.display='flex';
+  document.getElementById('unm').textContent=me.name;
+  if(me.role==='admin')document.getElementById('admsec').style.display='';
+  const gl=gg('jep:gl');if(gl){lDU=gl.l||null;nDU=gl.n||null;}
+  let idx=gg('jep:idx:'+me.id)||[];
+  if(!idx.length){
+    const id=gid();idx=[{id,n:'New Project',t:Date.now()}];
+    sg('jep:idx:'+me.id,idx);curPid=id;resetSt();sg('jep:p:'+id,snap());
+  } else {
+    curPid=idx[0].id;applySnap(gg('jep:p:'+curPid));
+  }
+  pidx=idx;rebuildSel();rdy=true;upd();setSvL('','');
+}
+
+// ── State ──
+function snap(){return{nm:document.getElementById('cname').value,cl:cDU,sd:document.getElementById('startD').value,ci,cst,st:ST.map(s=>({n:s.n,d:s.d,ov:s.ov||null}))};}
+function applySnap(s){
+  if(!s)return;
+  document.getElementById('cname').value=s.nm||'';
+  document.getElementById('startD').value=s.sd||tod();
+  ci=s.ci||0;cst=s.cst||'ON TRACK';cDU=s.cl||null;
+  ST=s.st?.length===DEF.length?s.st.map(x=>({n:x.n,d:x.d,ov:x.ov||null})):DEF.map(d=>({...d,ov:null}));
+  syncStBtns();
+}
+function resetSt(){document.getElementById('cname').value='';document.getElementById('startD').value=tod();ci=0;cst='ON TRACK';cDU=null;ST=DEF.map(d=>({...d,ov:null}));syncStBtns();}
+function syncStBtns(){const m={'ON TRACK':'on','AT RISK':'at','DELAYED':'de'};document.querySelectorAll('.stb').forEach(b=>{b.className='stb';if(b.textContent.trim()===cst)b.className='stb '+m[cst];});}
+
+// ── Projects ──
+function rebuildSel(){document.getElementById('pSel').innerHTML=pidx.map(p=>`<option value="${p.id}"${p.id===curPid?' selected':''}>${(p.n||'Untitled').slice(0,30)}</option>`).join('');}
+function switchP(id){if(!id||id===curPid)return;curPid=id;applySnap(gg('jep:p:'+id));upd();}
+function newP(){const id=gid();pidx.unshift({id,n:'New Project',t:Date.now()});sg('jep:idx:'+me.id,pidx);curPid=id;resetSt();rebuildSel();sg('jep:p:'+id,snap());upd();}
+function delP(){
+  if(pidx.length<=1){alert('Cannot delete the only project.');return;}
+  if(!confirm('Delete this project?'))return;
+  dg('jep:p:'+curPid);pidx=pidx.filter(p=>p.id!==curPid);
+  sg('jep:idx:'+me.id,pidx);curPid=pidx[0].id;applySnap(gg('jep:p:'+curPid));rebuildSel();upd();
+}
+
+// ── Auto-save ──
+function setSvL(t,c){const e=document.getElementById('svl');e.textContent=t;e.className='svl '+c;}
+function doSave(){
+  if(!rdy||!curPid||!me)return;
+  sg('jep:p:'+curPid,snap());
+  const nm=document.getElementById('cname').value||'Untitled';
+  const e=pidx.find(p=>p.id===curPid);if(e){e.n=nm;e.t=Date.now();}
+  sg('jep:idx:'+me.id,pidx);rebuildSel();
+  setSvL('✓ Saved','ok');setTimeout(()=>setSvL('',''),2000);
+}
+function schedSave(){if(!rdy)return;setSvL('● Saving…','sv');clearTimeout(svT);svT=setTimeout(doSave,600);}
+
+// ── Status ──
+function setSt(s,btn){cst=s;document.querySelectorAll('.stb').forEach(b=>b.className='stb');btn.className='stb '+{'ON TRACK':'on','AT RISK':'at','DELAYED':'de'}[s];upd();}
+
+// ── Date cascade ──
+function getDates(){
+  const sv=document.getElementById('startD').value;
+  const s0=sv?new Date(sv):new Date();
+  const out=[];let prev=new Date(s0);
+  for(let i=0;i<ST.length;i++){
+    if(ST[i].ov)prev=new Date(ST[i].ov);
+    else if(i===0)prev=new Date(s0);
+    else prev=addD(prev,ST[i].d);
+    out.push(new Date(prev));
+  }
+  return out;
+}
+
+// ── Stage list ──
+function buildList(dates){
+  const el=document.getElementById('sl');el.innerHTML='';
+  ST.forEach((s,i)=>{
+    const done=i<ci,cur=i===ci,sk=done&&!s.ov;
+    const dv=(done&&s.ov)?isoD(s.ov):(!done?isoD(dates[i]):'');
+    const row=document.createElement('div');
+    row.className='srow'+(cur?' cu':'');
+    row.innerHTML=`<div class="r1">
+      <div class="sdot ${sk?'sk':done?'dn':cur?'cu2':''}"></div>
+      <input class="sni" type="text" value="${s.n.replace(/"/g,'&quot;')}"
+        onchange="ST[${i}].n=this.value;upd()" onclick="event.stopPropagation()">
+    </div>
+    <div class="r2">
+      ${i>0?`<span class="rl">Dur.</span>
+      <input class="di" type="number" min="0" value="${s.d}"
+        onchange="ST[${i}].d=+this.value;upd()" onclick="event.stopPropagation()">
+      <span class="rl">d</span>`:'<span class="rl" style="opacity:.2;font-size:6.5px">start date</span>'}
+      <input class="dti${s.ov?' ov':''}" type="date" value="${dv}" id="dti${i}"
+        onchange="ST[${i}].ov=this.value||null;this.classList.toggle('ov',!!this.value);upd()"
+        onclick="event.stopPropagation()">
+      <button class="rbt" onclick="event.stopPropagation();ST[${i}].ov=null;(()=>{const x=document.getElementById('dti${i}');x.value='';x.classList.remove('ov');})();upd()">↺</button>
+    </div>`;
+    row.addEventListener('click',()=>{ci=i;upd();});
+    el.appendChild(row);
+  });
+}
+
+// ── Card preview ──
+function buildCard(dates){
+  document.getElementById('pNm').textContent=(document.getElementById('cname').value||'CLIENT').toUpperCase();
+  const la=document.getElementById('logosEl');la.innerHTML='';
+  const addL=(du,ph)=>{const w=document.createElement('div');w.className='lw';w.innerHTML=du?`<img src="${du}">`:`<span class="lph">${ph}</span>`;la.appendChild(w);};
+  const addSp=()=>{const d=document.createElement('div');d.className='lsep';la.appendChild(d);};
+  addL(lDU,'<span style="color:#808285">LIN</span><span style="color:#dc2626">K</span><span style="color:#808285">ED</span>');
+  addSp();
+  addL(nDU,'<span style="color:#cc0000;font-style:italic;font-size:7px">ORACLE</span><span style="color:#111;font-size:8px;font-weight:900;margin-left:2px">NETSUITE</span>');
+  if(cDU){addSp();addL(cDU,'');}
+  document.getElementById('tlf').style.width=(ci===0?0:ci/(ST.length-1)*100)+'%';
+  const tls=document.getElementById('tlsi');tls.innerHTML='';
+  ST.forEach((s,i)=>{
+    const lp=i===0?0:i===ST.length-1?100:i/(ST.length-1)*100;
+    const done=i<ci,cur=i===ci,sk=done&&!s.ov,odd=i%2===1;
+    const dtStr=sk?'':(done&&s.ov?fmD(s.ov):fmD(dates[i]));
+    const el=document.createElement('div');el.className='si';el.style.left=lp+'%';
+    el.innerHTML=`<div class="sidt ${sk?'sk':done?'dn':cur?'cu':''}">${dtStr}</div>
+      <div class="sido ${sk?'sk':done?'dn':cur?'cu':''}"></div>
+      <div class="siln" style="height:${odd?'13px':'3px'}"></div>
+      <div class="sinm ${sk?'sk':done?'dn':cur?'cu':''}">${s.n}</div>`;
+    tls.appendChild(el);
+  });
+  const cd=dates[ci],ed=dates[ST.length-1];
+  const dd=Math.max(0,Math.round((ed-cd)/86400000));
+  document.getElementById('pETC').textContent=`${d2w(dd)} · ${fmD(ed)}`;
+  const sc={'ON TRACK':'#10b981','AT RISK':'#f59e0b','DELAYED':'#ef4444'};
+  const sk2={'ON TRACK':'sind sg','AT RISK':'sind sa','DELAYED':'sind sdd'};
+  document.getElementById('stDot').className=sk2[cst];
+  const st=document.getElementById('stTx');st.textContent=cst;st.style.color=sc[cst];
+}
+
+function upd(){const d=getDates();buildList(d);buildCard(d);schedSave();}
+
+// ── Logo handlers ──
+[['llf','l'],['nlf','n'],['clf','c']].forEach(([id,k])=>{
+  document.getElementById(id).onchange=e=>{
+    const f=e.target.files[0];if(!f)return;
+    const r=new FileReader();
+    r.onload=v=>{
+      if(k==='l'){lDU=v.target.result;sg('jep:gl',{l:lDU,n:nDU});}
+      else if(k==='n'){nDU=v.target.result;sg('jep:gl',{l:lDU,n:nDU});}
+      else cDU=v.target.result;
+      upd();
+    };r.readAsDataURL(f);
+  };
+});
+
+// ══════════ GIF ENCODER ══════════
+function lzwEncode(pix,mc){
+  const CC=1<<mc,EOI=CC+1;let cs=mc+1,nc=EOI+1;
+  const dict=new Map(),out=[];let buf=0,bl=0;
+  const wr=c=>{buf|=c<<bl;bl+=cs;while(bl>=8){out.push(buf&255);buf>>=8;bl-=8;}};
+  wr(CC);let w=pix[0];
+  for(let i=1;i<pix.length;i++){
+    const c=pix[i],k=(w<<8)|c;
+    if(dict.has(k)){w=dict.get(k);}
+    else{wr(w);if(nc<4096){dict.set(k,nc++);if(nc>(1<<cs)&&cs<12)cs++;}else{wr(CC);dict.clear();cs=mc+1;nc=EOI+1;}w=c;}
+  }
+  wr(w);wr(EOI);if(bl)out.push(buf&255);return out;
+}
+
+function eOut(t){return 1-(1-t)**3;}
+
+function drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates){
+  const TX=18,TEND=W-18,TY=84,DRAW=22;
+  const sxs=ST.map((_,i)=>TX+(TEND-TX)*i/(ST.length-1));
+  const nm=(document.getElementById('cname').value||'CLIENT').toUpperCase();
+  const cd=dates[ci],ed=dates[ST.length-1];
+  const dd=Math.max(0,Math.round((ed-cd)/86400000));
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#dc2626';ctx.fillRect(0,0,W,3);
+  let lx=16;
+  const dImg=(im,x,ph,mw,mh)=>{
+    if(im?.complete&&im.naturalWidth){const sc=Math.min(mw/im.naturalWidth,mh/im.naturalHeight,1);const iw=im.naturalWidth*sc,ih=im.naturalHeight*sc;ctx.drawImage(im,x,12+(mh-ih)/2,iw,ih);return iw+2;}
+    ctx.fillStyle='#808285';ctx.font='bold 8px Arial';ctx.textAlign='left';ctx.fillText(ph,x,26);return ctx.measureText(ph).width+2;
+  };
+  lx+=dImg(mIm,lx,'LINKED',90,22)+8;ctx.fillStyle='#e5e7eb';ctx.fillRect(lx,12,1,20);lx+=8;
+  lx+=dImg(nIm,lx,'ORACLE NETSUITE',106,22)+8;
+  if(cIm){ctx.fillStyle='#e5e7eb';ctx.fillRect(lx,12,1,20);lx+=8;dImg(cIm,lx,'',78,22);}
+  ctx.fillStyle='#dc2626';ctx.font='bold 6px Arial';ctx.textAlign='right';ctx.fillText('PROJECT ROADMAP',W-14,14);
+  ctx.fillStyle='#0f172a';ctx.font='900 15px Arial';ctx.textAlign='right';ctx.fillText(nm,W-14,38);
+  ctx.fillStyle='#f1f5f9';ctx.fillRect(TX,TY-1,TEND-TX,2);
+  const tgt=sxs[ci],fe=f<DRAW?TX+(tgt-TX)*eOut(f/(DRAW-1)):tgt;
+  if(fe>TX){ctx.fillStyle='#dc2626';ctx.fillRect(TX,TY-1,fe-TX,2);}
+  let pR=0,pA=0;
+  if(f>=DRAW){const t=((f-DRAW)%22)/21;pR=t;pA=Math.max(0,.45-t*.45);}
+  ST.forEach((s,i)=>{
+    const x=sxs[i],done=i<ci,cur=i===ci,sk=done&&!s.ov,odd=i%2===1;
+    const dtStr=sk?'':(done&&s.ov?fmD(s.ov):fmD(dates[i]));
+    if(dtStr){ctx.fillStyle=done?'#374151':cur?'#dc2626':'#9ca3af';ctx.font=(cur?'bold ':'')+' 6px Arial';ctx.textAlign='center';ctx.fillText(dtStr,x,TY-14);}
+    if(cur&&pR>0){ctx.beginPath();ctx.arc(x,TY,4.5+pR*11,0,Math.PI*2);ctx.strokeStyle=`rgba(220,38,38,${pA})`;ctx.lineWidth=1.5;ctx.stroke();}
+    ctx.beginPath();ctx.arc(x,TY,4,0,Math.PI*2);ctx.fillStyle=sk?'#f1f5f9':done||cur?'#dc2626':'#e5e7eb';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();
+    const lineH=odd?12:3,lblY=TY+(odd?21:12);
+    ctx.fillStyle='#e5e7eb';ctx.fillRect(x-.5,TY+5,1,lineH);
+    ctx.fillStyle=sk?'#d1d5db':done?'#9ca3af':cur?'#dc2626':'#c4c9d4';
+    ctx.font=(cur?'bold ':'')+' 5.5px Arial';ctx.textAlign='center';ctx.fillText(s.n.toUpperCase(),x,lblY);
+  });
+  const FY=H-12;
+  ctx.fillStyle='#f3f4f6';ctx.fillRect(16,H-46,W-32,1);
+  ctx.fillStyle='#9ca3af';ctx.font='5.5px Arial';ctx.textAlign='left';ctx.fillText('ESTIMATED COMPLETION',TX,FY-14);
+  ctx.fillStyle='#111827';ctx.font='bold 9px Arial';ctx.fillText(`${d2w(dd)} · ${fmD(ed)}`,TX,FY);
+  const sx=TX+188;
+  ctx.fillStyle='#9ca3af';ctx.font='5.5px Arial';ctx.fillText('STATUS',sx,FY-14);
+  const sc={'ON TRACK':'#10b981','AT RISK':'#f59e0b','DELAYED':'#ef4444'}[cst];
+  const rgb={'ON TRACK':'16,185,129','AT RISK':'245,158,11','DELAYED':'239,68,68'}[cst];
+  if(f>=DRAW){const t=((f-DRAW)%22)/21;ctx.beginPath();ctx.arc(sx+3.5,FY-3.5,3.5+t*5,0,Math.PI*2);ctx.fillStyle=`rgba(${rgb},${Math.max(0,.28-t*.28)})`;ctx.fill();}
+  ctx.beginPath();ctx.arc(sx+3.5,FY-3.5,3.5,0,Math.PI*2);ctx.fillStyle=sc;ctx.fill();
+  ctx.fillStyle=sc;ctx.font='bold 9px Arial';ctx.textAlign='left';ctx.fillText(cst,sx+11,FY);
+  ctx.fillStyle='#c4c4c4';ctx.font='bold 5.5px Arial';ctx.textAlign='right';ctx.fillText('LINKED ERP  ×  ORACLE NETSUITE',W-14,FY);
+}
+
+async function genGIF(){
+  const btn=document.getElementById('gifBtn');
+  btn.disabled=true;btn.textContent='⏳ Generating…';
+  document.getElementById('prb').style.display='block';
+  document.getElementById('prtx').style.display='block';
+  const W=700,H=175;
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  const ctx=cv.getContext('2d');
+  const dates=getDates();
+  const li=s=>new Promise(r=>{if(!s){r(null);return;}const m=new Image();m.onload=()=>r(m);m.onerror=()=>r(null);m.src=s;});
+  const[mIm,nIm,cIm]=await Promise.all([li(lDU),li(nDU),li(cDU)]);
+  const TOTAL=60,cvFrames=[],delays=[];
+  const setProg=(p,t)=>{document.getElementById('prbf').style.width=p+'%';document.getElementById('prtx').textContent=t;};
+  for(let f=0;f<TOTAL;f++){
+    drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates);
+    const fc=document.createElement('canvas');fc.width=W;fc.height=H;fc.getContext('2d').drawImage(cv,0,0);
+    cvFrames.push(fc);delays.push(f<22?50:80);
+    setProg(Math.round(f/TOTAL*55),`Rendering frame ${f+1}/${TOTAL}`);
+    await new Promise(r=>setTimeout(r,0));
+  }
+  setProg(56,'Building palette…');await new Promise(r=>setTimeout(r,0));
+  const cm=new Map(),pal=[];
+  const addC=(r,g,b)=>{const k=(r<<16)|(g<<8)|b;if(!cm.has(k)&&pal.length<254){cm.set(k,pal.length);pal.push([r,g,b]);}};
+  addC(255,255,255);
+  for(const fi of[0,12,24,36,48,59]){
+    const{data}=cvFrames[fi].getContext('2d').getImageData(0,0,W,H);
+    for(let i=0;i<data.length;i+=4)addC(data[i],data[i+1],data[i+2]);
+    if(pal.length>=254)break;
+  }
+  let ps=2;while(ps<pal.length)ps<<=1;
+  while(pal.length<ps)pal.push([0,0,0]);
+  const pb=Math.round(Math.log2(ps))-1;
+  const near=(r,g,b)=>{
+    const k=(r<<16)|(g<<8)|b;if(cm.has(k))return cm.get(k);
+    let bi=0,bd=1e9;
+    for(let j=0;j<pal.length;j++){const dr=r-pal[j][0],dg=g-pal[j][1],db=b-pal[j][2];const d=dr*dr+dg*dg+db*db;if(d<bd){bd=d;bi=j;}}
+    cm.set(k,bi);return bi;
+  };
+  const B=[0x47,0x49,0x46,0x38,0x39,0x61];
+  const p16=v=>{B.push(v&255,(v>>8)&255);};
+  p16(W);p16(H);B.push(0x80|pb,0,0);
+  for(const[r,g,b]of pal)B.push(r,g,b);
+  B.push(0x21,0xff,0x0b,78,69,84,83,67,65,80,69,50,46,48,0x03,0x01,0,0,0);
+  for(let fi=0;fi<TOTAL;fi++){
+    const dl=Math.round(delays[fi]/10);
+    const{data}=cvFrames[fi].getContext('2d').getImageData(0,0,W,H);
+    const idx=new Uint8Array(W*H);
+    for(let i=0;i<W*H;i++)idx[i]=near(data[i*4],data[i*4+1],data[i*4+2]);
+    B.push(0x21,0xf9,0x04,0x00);p16(dl);B.push(0,0);
+    B.push(0x2c);p16(0);p16(0);p16(W);p16(H);B.push(0);
+    const lm=Math.max(2,pb+1);B.push(lm);
+    const comp=lzwEncode(idx,lm);
+    for(let i=0;i<comp.length;){const n=Math.min(255,comp.length-i);B.push(n);for(let j=0;j<n;j++)B.push(comp[i++]);}
+    B.push(0);
+    if(fi%6===0){setProg(58+Math.round(fi/TOTAL*40),`Encoding ${fi+1}/${TOTAL}`);await new Promise(r=>setTimeout(r,0));}
+  }
+  B.push(0x3b);
+  // Direct download (works in real browser, not sandboxed iframe)
+  const blob=new Blob([new Uint8Array(B)],{type:'image/gif'});
+  const url=URL.createObjectURL(blob);
+  const fname=(document.getElementById('cname').value||'client').replace(/\s+/g,'_')+'_JEP.gif';
+  const a=document.createElement('a');a.href=url;a.download=fname;document.body.appendChild(a);a.click();
+  document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),2000);
+  setProg(100,'✓ Downloaded!');
+  btn.disabled=false;btn.textContent='⬇ Export Animated GIF for Outlook';
+  setTimeout(()=>{document.getElementById('prb').style.display='none';document.getElementById('prtx').style.display='none';},2000);
+}
+
+// ── Init ──
+(async()=>{
+  await seedAdmin();
+  document.getElementById('A').style.display='flex';
+})();
+</script>
+</body>
+</html>
