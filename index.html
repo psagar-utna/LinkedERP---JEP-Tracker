@@ -67,7 +67,7 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
 .di{width:33px;background:#060b14;border:1px solid #0f1a2e;color:#1e3050;padding:2px 3px;border-radius:3px;font-size:9.5px;font-family:inherit;text-align:center}
 .di:focus{outline:none;color:#c0cfe0;border-color:#1e3050}
 .di:disabled{opacity:.12}
-.dti{flex:1;background:#060b14;border:1px solid #0f1a2e;color:#0d1828;padding:2px 4px;border-radius:3px;font-size:8.5px;font-family:inherit}
+.dti{flex:1;background:#060b14;border:1px solid #0f1a2e;color:#8da8bf;padding:2px 4px;border-radius:3px;font-size:8.5px;font-family:inherit}input[type=date].dti{color-scheme:dark}
 .dti:focus{outline:none;border-color:#1e3050}
 .dti.ov{border-color:#7c3503;color:#fbbf24}
 .rbt{background:none;border:none;color:#0f1a2e;cursor:pointer;font-size:12px;padding:0 2px;line-height:1;flex-shrink:0}
@@ -404,9 +404,9 @@ function buildCard(dates){
   const la=document.getElementById('logosEl');la.innerHTML='';
   const addL=(du,ph)=>{const w=document.createElement('div');w.className='lw';w.innerHTML=du?`<img src="${du}">`:`<span class="lph">${ph}</span>`;la.appendChild(w);};
   const addSp=()=>{const d=document.createElement('div');d.className='lsep';la.appendChild(d);};
-  addL(lDU,'<span style="color:#808285">LIN</span><span style="color:#dc2626">K</span><span style="color:#808285">ED</span>');
+  addL(lDU,'<span style="font-size:11px;font-weight:900;color:#808285;letter-spacing:-0.5px">LINKED</span><span style="font-size:11px;font-weight:900;color:#dc2626;margin-left:3px">ERP</span>');
   addSp();
-  addL(nDU,'<span style="color:#cc0000;font-style:italic;font-size:7px">ORACLE</span><span style="color:#111;font-size:8px;font-weight:900;margin-left:2px">NETSUITE</span>');
+  addL(nDU,'<span style="font-size:8px;color:#cc0000;font-style:italic;font-weight:700">ORACLE</span><span style="font-size:10px;font-weight:900;color:#111;margin-left:2px">NetSuite</span>');
   if(cDU){addSp();addL(cDU,'');}
   document.getElementById('tlf').style.width=(ci===0?0:ci/(ST.length-1)*100)+'%';
   const tls=document.getElementById('tlsi');tls.innerHTML='';
@@ -434,7 +434,8 @@ function upd(){const d=getDates();buildList(d);buildCard(d);schedSave();}
 
 // ── Logo handlers ──
 [['llf','l'],['nlf','n'],['clf','c']].forEach(([id,k])=>{
-  document.getElementById(id).onchange=e=>{
+  const _inp=document.getElementById(id);if(!_inp)return;
+  _inp.onchange=e=>{
     const f=e.target.files[0];if(!f)return;
     const r=new FileReader();
     r.onload=v=>{
