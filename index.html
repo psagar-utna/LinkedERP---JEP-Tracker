@@ -517,29 +517,27 @@ function drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates){
     ctx.font=(cur?'bold ':'')+' 5.5px Arial';ctx.textAlign='center';ctx.fillText(s.n.toUpperCase(),x,lblY);
   });
   const FY=H-12;
-  const etcAlpha=f<DRAW?0:Math.min(1,(f-DRAW)/14);
+  // Bottom separator
   ctx.fillStyle='#f3f4f6';ctx.fillRect(16,H-46,W-32,1);
   const sc={'ON TRACK':'#10b981','AT RISK':'#f59e0b','DELAYED':'#ef4444'}[cst];
   const rgb={'ON TRACK':'16,185,129','AT RISK':'245,158,11','DELAYED':'239,68,68'}[cst];
-  ctx.globalAlpha=etcAlpha;
-  ctx.fillStyle='#9ca3af';ctx.font='5.5px Arial';ctx.textAlign='left';ctx.fillText('ESTIMATED COMPLETION',TX,FY-14);
-  ctx.fillStyle='#111827';ctx.font='bold 9px Arial';ctx.fillText(d2w(dd)+' · '+fmD(ed),TX,FY);
-  const sx=TX+188;
-  ctx.fillStyle='#9ca3af';ctx.font='5.5px Arial';ctx.fillText('STATUS',sx,FY-14);
+  // ETC - always visible, matching preview card
   ctx.globalAlpha=1;
-  if(f>=DRAW){const t=((f-DRAW)%22)/21;ctx.beginPath();ctx.arc(sx+3.5,FY-3.5,3.5+t*5,0,Math.PI*2);ctx.fillStyle='rgba('+rgb+','+Math.max(0,.28-t*.28)+')';ctx.fill();}
-  ctx.globalAlpha=etcAlpha;
-  ctx.beginPath();ctx.arc(sx+3.5,FY-3.5,3.5,0,Math.PI*2);ctx.fillStyle=sc;ctx.fill();
-  ctx.fillStyle=sc;ctx.font='bold 9px Arial';ctx.textAlign='left';ctx.fillText(cst,sx+11,FY);
-  ctx.globalAlpha=1;
-
-  // Footer brand (right-aligned, segmented colors)
-  ctx.globalAlpha=Math.min(1,etcAlpha*0.8);
-  ctx.font='bold 5.5px Arial';ctx.textAlign='left';
-  const _parts=[['LINKED ','#808285'],['ERP','#dc2626'],['  ×  ','#aaaaaa'],['ORACLE ','#cc0000'],['NetSuite','#1a1a1a']];
+  ctx.fillStyle='#9ca3af';ctx.font='600 9px Arial';ctx.textAlign='left';ctx.fillText('ESTIMATED COMPLETION',TX,FY-16);
+  ctx.fillStyle='#111827';ctx.font='bold 12px Arial';ctx.fillText(d2w(dd)+' · '+fmD(ed),TX,FY);
+  // Status - always visible
+  const sx=TX+200;
+  ctx.fillStyle='#9ca3af';ctx.font='600 9px Arial';ctx.fillText('STATUS',sx,FY-16);
+  // Pulsing ring on status dot
+  if(f>=DRAW){const t=((f-DRAW)%22)/21;ctx.beginPath();ctx.arc(sx+5,FY-4,5+t*7,0,Math.PI*2);ctx.fillStyle='rgba('+rgb+','+Math.max(0,.25-t*.25)+')';ctx.fill();}
+  // Status dot + text
+  ctx.beginPath();ctx.arc(sx+5,FY-4,5,0,Math.PI*2);ctx.fillStyle=sc;ctx.fill();
+  ctx.fillStyle=sc;ctx.font='bold 12px Arial';ctx.textAlign='left';ctx.fillText(cst,sx+14,FY);
+  // Footer brand - right aligned, always visible
+  ctx.font='bold 7px Arial';ctx.textAlign='left';
+  const _parts=[['LINKED ','#808285'],['ERP','#dc2626'],['  x  ','#aaaaaa'],['ORACLE ','#cc0000'],['NetSuite','#1a1a1a']];
   const _fullW=_parts.reduce((a,p)=>a+ctx.measureText(p[0]).width,0);
   let _px=W-14-_fullW;_parts.forEach(([t,c])=>{ctx.fillStyle=c;ctx.fillText(t,_px,FY);_px+=ctx.measureText(t).width;});
-  ctx.globalAlpha=1;
 }
 
 async function genGIF(){
