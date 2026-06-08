@@ -371,6 +371,22 @@ function getDates(){
 }
 
 // ── Stage list ──
+function onDtChange(i,val,el){
+  el.classList.toggle('ov',!!val);
+  if(i===0){
+    document.getElementById('startD').value=val||isoD(new Date());
+    ST[0].ov=null;
+  } else {
+    ST[i].ov=val||null;
+    if(val){
+      const prevDates=getDates();
+      const diff=Math.round((new Date(val)-prevDates[i-1])/86400000);
+      ST[i].d=Math.max(1,diff);
+      const diEl=document.getElementById('di'+i);if(diEl)diEl.value=ST[i].d;
+    }
+  }
+  upd();
+}
 function buildList(dates){
   const el=document.getElementById('sl');el.innerHTML='';
   ST.forEach((s,i)=>{
@@ -386,10 +402,10 @@ function buildList(dates){
     <div class="r2">
       ${i>0?`<span class="rl">Dur.</span>
       <input class="di" type="number" min="0" value="${s.d}"
-        onchange="ST[${i}].d=+this.value;upd()" onclick="event.stopPropagation()">
+        id="di${i}" onchange="ST[${i}].d=Math.max(1,+this.value||1);ST[${i}].ov=null;(()=>{const x=document.getElementById('dti'+${i});if(x){x.value='';x.classList.remove('ov');}})();upd()" onclick="event.stopPropagation()">
       <span class="rl">d</span>`:'<span class="rl" style="opacity:.2;font-size:6.5px">start date</span>'}
       <input class="dti${s.ov?' ov':''}" type="date" value="${dv}" id="dti${i}"
-        onchange="ST[${i}].ov=this.value||null;this.classList.toggle('ov',!!this.value);upd()"
+        onchange="onDtChange(${i},this.value,this)"
         onclick="event.stopPropagation()">
       <button class="rbt" onclick="event.stopPropagation();ST[${i}].ov=null;(()=>{const x=document.getElementById('dti${i}');x.value='';x.classList.remove('ov');})();upd()">↺</button>
     </div>`;
