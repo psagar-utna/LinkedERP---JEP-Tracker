@@ -381,7 +381,7 @@ function onDtChange(i,val,el){
     if(val){
       const prevDates=getDates();
       const diff=Math.round((new Date(val)-prevDates[i-1])/86400000);
-      ST[i].d=Math.max(1,diff);
+      ST[i].d=Math.max(0,diff);
       const diEl=document.getElementById('di'+i);if(diEl)diEl.value=ST[i].d;
     }
   }
@@ -521,16 +521,18 @@ function drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates){
   ctx.fillStyle='#f3f4f6';ctx.fillRect(16,H-46,W-32,1);
   const sc={'ON TRACK':'#10b981','AT RISK':'#f59e0b','DELAYED':'#ef4444'}[cst];
   const rgb={'ON TRACK':'16,185,129','AT RISK':'245,158,11','DELAYED':'239,68,68'}[cst];
-  if(etcAlpha>0){ctx.globalAlpha=etcAlpha;}
+  ctx.globalAlpha=etcAlpha;
   ctx.fillStyle='#9ca3af';ctx.font='5.5px Arial';ctx.textAlign='left';ctx.fillText('ESTIMATED COMPLETION',TX,FY-14);
   ctx.fillStyle='#111827';ctx.font='bold 9px Arial';ctx.fillText(d2w(dd)+' · '+fmD(ed),TX,FY);
   const sx=TX+188;
   ctx.fillStyle='#9ca3af';ctx.font='5.5px Arial';ctx.fillText('STATUS',sx,FY-14);
   ctx.globalAlpha=1;
   if(f>=DRAW){const t=((f-DRAW)%22)/21;ctx.beginPath();ctx.arc(sx+3.5,FY-3.5,3.5+t*5,0,Math.PI*2);ctx.fillStyle='rgba('+rgb+','+Math.max(0,.28-t*.28)+')';ctx.fill();}
-  if(etcAlpha>0){ctx.globalAlpha=etcAlpha;}
+  ctx.globalAlpha=etcAlpha;
   ctx.beginPath();ctx.arc(sx+3.5,FY-3.5,3.5,0,Math.PI*2);ctx.fillStyle=sc;ctx.fill();
   ctx.fillStyle=sc;ctx.font='bold 9px Arial';ctx.textAlign='left';ctx.fillText(cst,sx+11,FY);
+  ctx.globalAlpha=1;
+
   // Footer brand (right-aligned, segmented colors)
   ctx.globalAlpha=Math.min(1,etcAlpha*0.8);
   ctx.font='bold 5.5px Arial';ctx.textAlign='left';
