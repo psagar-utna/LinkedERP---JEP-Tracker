@@ -576,7 +576,9 @@ async function genGIF(){
   setProg(56,'Building palette…');await new Promise(r=>setTimeout(r,0));
   const cm=new Map(),pal=[];
   const addC=(r,g,b)=>{const k=(r<<16)|(g<<8)|b;if(!cm.has(k)&&pal.length<254){cm.set(k,pal.length);pal.push([r,g,b]);}};
-  addC(255,255,255);
+  // Seed critical colors first so they survive 254-color palette limit
+  addC(255,255,255);addC(220,38,38);addC(16,185,129);addC(245,158,11);addC(239,68,68);
+  addC(17,24,39);addC(156,163,175);addC(241,245,249);addC(15,23,42);addC(128,130,133);addC(204,0,0);
   for(const fi of[0,12,24,36,48,59]){
     const{data}=cvFrames[fi].getContext('2d').getImageData(0,0,W,H);
     for(let i=0;i<data.length;i+=4)addC(data[i],data[i+1],data[i+2]);
