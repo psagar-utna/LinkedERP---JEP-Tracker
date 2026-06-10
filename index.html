@@ -179,7 +179,7 @@ input[type=file]{color:#192840;font-size:9.5px;width:100%}
           </div>
         <div class="ssc">
           <div class="ssh">Timeline</div>
-          <div class="fg"><label class="fl">Project start date</label><input class="fi" type="date" id="startD" oninput="upd()"></div>
+          <div class="fg"><label class="fl">Project start date</label><input class="fi" type="date" id="startD" oninput="upd()" onchange="upd()"></div>
           <div class="fg"><label class="fl">Status</label>
             <div class="stbs">
               <button class="stb on" onclick="setSt('ON TRACK',this)">ON TRACK</button>
@@ -246,8 +246,8 @@ let me=null,curPid=null,pidx=[],svT=null,rdy=false;
 const gid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const addD=(d,n)=>{const r=new Date(d);r.setDate(r.getDate()+n);return r;};
 const fmD=d=>d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'';
-const isoD=d=>{try{return new Date(d).toISOString().split('T')[0];}catch{return '';}};
-const tod=()=>new Date().toISOString().split('T')[0];
+const isoD=d=>{try{const x=new Date(d);if(isNaN(x))return'';if(typeof d==='string'&&d.length===10)return d;return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');}catch{return '';}};
+const tod=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
 const d2w=n=>{if(!n||n<=0)return'—';const w=Math.floor(n/7),d=n%7;return w&&d?`${w}w ${d}d`:w?`${w}w`:`${d}d`;};
 const d2wFull=n=>{if(!n||n<=0)return'-';const w=Math.floor(n/7),d=n%7;const ws=w===1?'week':'weeks',ds=d===1?'day':'days';return w&&d?(w+' '+ws+' '+d+' '+ds):w?(w+' '+ws):(d+' '+ds);};
 
@@ -330,7 +330,7 @@ function applySnap(s){
   document.getElementById('cname').value=s.nm||'';
   document.getElementById('startD').value=s.sd||tod();
   ci=s.ci||0;cst=s.cst||'ON TRACK';cDU=s.cl||null;
-  ST=s.st?.length===DEF.length?s.st.map(x=>({n:x.n,d:x.d,ov:x.ov||null})):DEF.map(d=>({...d,ov:null}));
+  ST=s.st?.length>0?s.st.map(x=>({n:x.n,d:x.d,ov:x.ov||null})):DEF.map(d=>({...d,ov:null}));
   syncStBtns();
 }
 function resetSt(){document.getElementById('cname').value='';document.getElementById('startD').value=tod();ci=0;cst='ON TRACK';cDU=null;ST=DEF.map(d=>({...d,ov:null}));syncStBtns();}
