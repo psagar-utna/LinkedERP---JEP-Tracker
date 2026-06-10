@@ -549,14 +549,14 @@ function drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates){
     ctx.beginPath();ctx.moveTo(x,TY+tickDir*(baseR+1));ctx.lineTo(x,tickEnd);ctx.stroke();
     // Date
     if(dtStr){
-      ctx.fillStyle=done?'#9ca3af':cur?'#dc2626':'#6b7280';
-      ctx.font=(cur?'bold ':'')+'5.5px Arial';ctx.textAlign='center';
-      ctx.fillText(dtStr,x,above?TY-32:TY+32);
+      ctx.fillStyle=done?'#6b7280':cur?'#dc2626':'#374151';
+      ctx.font='bold 7px Arial';ctx.textAlign='center';
+      ctx.fillText(dtStr,x,above?TY-34:TY+34);
     }
     // Stage name label
-    ctx.fillStyle=sk?'#d1d5db':done?'#9ca3af':cur?'#111827':'#6b7280';
-    ctx.font=(cur?'bold ':'')+'5.5px Arial';ctx.textAlign='center';
-    ctx.fillText(s.n.toUpperCase(),x,above?TY-20:TY+26);
+    ctx.fillStyle=sk?'#9ca3af':done?'#374151':cur?'#111827':'#374151';
+    ctx.font=(cur?'bold 8px':'7px')+' Arial';ctx.textAlign='center';
+    ctx.fillText(s.n.toUpperCase(),x,above?TY-22:TY+26);
     ctx.restore();
     // Pulse ring behind dot
     if(cur&&pR>0){
