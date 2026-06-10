@@ -409,7 +409,7 @@ function buildList(dates){
   const el=document.getElementById('sl');el.innerHTML='';
   ST.forEach((s,i)=>{
     const done=i<ci,cur=i===ci,sk=done&&!s.ov;
-    const dv=(done&&s.ov)?isoD(s.ov):(!done?isoD(dates[i]):'');
+    const dv=i===0?isoD(dates[0]):(done&&s.ov)?isoD(s.ov):(!done?isoD(dates[i]):'');
     const row=document.createElement('div');
     row.className='srow'+(cur?' cu':'');
     row.innerHTML=`<div class="r1">
