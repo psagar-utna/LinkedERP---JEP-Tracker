@@ -244,6 +244,7 @@ const fmD=d=>d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'shor
 const isoD=d=>{try{return new Date(d).toISOString().split('T')[0];}catch{return '';}};
 const tod=()=>new Date().toISOString().split('T')[0];
 const d2w=n=>{if(!n||n<=0)return'—';const w=Math.floor(n/7),d=n%7;return w&&d?`${w}w ${d}d`:w?`${w}w`:`${d}d`;};
+const d2wFull=n=>{if(!n||n<=0)return'-';const w=Math.floor(n/7),d=n%7;const ws=w===1?'week':'weeks',ds=d===1?'day':'days';return w&&d?(w+' '+ws+' '+d+' '+ds):w?(w+' '+ws):(d+' '+ds);};
 
 // ── localStorage storage ──
 const sg=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}};
@@ -480,74 +481,69 @@ function lzwEncode(pix,mc){
 function eOut(t){return 1-(1-t)**3;}
 
 function drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates){
-  const TX=18,TEND=W-18,TY=84,DRAW=22;
+  const TX=18,TEND=W-18,TY=92,DRAW=22;
   const sxs=ST.map((_,i)=>TX+(TEND-TX)*i/(ST.length-1));
   const nm=(document.getElementById('cname').value||'CLIENT').toUpperCase();
   const cd=dates[ci],ed=dates[ST.length-1];
   const dd=Math.max(0,Math.round((ed-cd)/86400000));
   ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
   ctx.fillStyle='#dc2626';ctx.fillRect(0,0,W,3);
-  let lx=16;
   const dImg=(im,x,ph,mw,mh)=>{
-    if(im?.complete&&im.naturalWidth){const sc=Math.min(mw/im.naturalWidth,mh/im.naturalHeight,1);const iw=im.naturalWidth*sc,ih=im.naturalHeight*sc;ctx.drawImage(im,x,12+(mh-ih)/2,iw,ih);return iw+2;}
+    if(im&&im.complete&&im.naturalWidth){const sc=Math.min(mw/im.naturalWidth,mh/im.naturalHeight,1);const iw=im.naturalWidth*sc,ih=im.naturalHeight*sc;ctx.drawImage(im,x,6+(mh-ih)/2,iw,ih);return iw+4;}
     ctx.textAlign='left';
-    if(ph==='LINKED'){ctx.font='bold 8.5px Arial';ctx.fillStyle='#808285';ctx.fillText('LINKED',x,26);const lw=ctx.measureText('LINKED').width+2;ctx.fillStyle='#dc2626';ctx.fillText('ERP',x+lw,26);return lw+ctx.measureText('ERP').width+2;}
-    if(ph==='ORACLE NETSUITE'){ctx.font='italic bold 7px Arial';ctx.fillStyle='#cc0000';ctx.fillText('ORACLE',x,26);const ow=ctx.measureText('ORACLE').width+3;ctx.font='bold 9px Arial';ctx.fillStyle='#1a1a1a';ctx.fillText('NetSuite',x+ow,26);return ow+ctx.measureText('NetSuite').width+2;}
-    ctx.fillStyle='#808285';ctx.font='bold 8px Arial';ctx.fillText(ph,x,26);return ctx.measureText(ph).width+2;
+    if(ph==='LINKED'){ctx.font='bold 9px Arial';ctx.fillStyle='#808285';ctx.fillText('LINKED',x,28);const lw=ctx.measureText('LINKED').width+2;ctx.fillStyle='#dc2626';ctx.fillText('ERP',x+lw,28);return lw+ctx.measureText('ERP').width+2;}
+    if(ph==='ORACLE NETSUITE'){ctx.font='italic bold 8px Arial';ctx.fillStyle='#cc0000';ctx.fillText('ORACLE',x,28);const ow=ctx.measureText('ORACLE').width+3;ctx.font='bold 10px Arial';ctx.fillStyle='#1a1a1a';ctx.fillText('NetSuite',x+ow,28);return ow+ctx.measureText('NetSuite').width+2;}
+    ctx.fillStyle='#808285';ctx.font='bold 8px Arial';ctx.fillText(ph,x,28);return ctx.measureText(ph).width+2;
   };
-  lx+=dImg(mIm,lx,'LINKED',90,22)+8;ctx.fillStyle='#e5e7eb';ctx.fillRect(lx,12,1,20);lx+=8;
-  lx+=dImg(nIm,lx,'ORACLE NETSUITE',106,22)+8;
-  if(cIm){ctx.fillStyle='#e5e7eb';ctx.fillRect(lx,12,1,20);lx+=8;dImg(cIm,lx,'',78,22);}
-  ctx.fillStyle='#dc2626';ctx.font='bold 6px Arial';ctx.textAlign='right';ctx.fillText('PROJECT ROADMAP',W-14,14);
-  ctx.fillStyle='#0f172a';ctx.font='900 15px Arial';ctx.textAlign='right';ctx.fillText(nm,W-14,38);
+  let lx=14;
+  lx+=dImg(mIm,lx,'LINKED',110,36)+8;
+  ctx.fillStyle='#e5e7eb';ctx.fillRect(lx,8,1,28);lx+=10;
+  lx+=dImg(nIm,lx,'ORACLE NETSUITE',130,36)+8;
+  if(cIm){ctx.fillStyle='#e5e7eb';ctx.fillRect(lx,8,1,28);lx+=10;dImg(cIm,lx,'',100,36);}
+  ctx.fillStyle='#dc2626';ctx.font='bold 7px Arial';ctx.textAlign='right';
+  ctx.fillText('PROJECT  ROADMAP',W-14,16);
+  ctx.fillStyle='#0f172a';ctx.font='900 17px Arial';ctx.textAlign='right';
+  ctx.fillText(nm,W-14,42);
   ctx.fillStyle='#f1f5f9';ctx.fillRect(TX,TY-1,TEND-TX,2);
   const tgt=sxs[ci],fe=f<DRAW?TX+(tgt-TX)*eOut(f/(DRAW-1)):tgt;
   if(fe>TX){ctx.fillStyle='#dc2626';ctx.fillRect(TX,TY-1,fe-TX,2);}
-  let pR=0,pA=0;
-  if(f>=DRAW){const t=((f-DRAW)%22)/21;pR=t;pA=Math.max(0,.45-t*.45);}
+  let pA=0,pR=0;
+  if(f>=DRAW){const t=((f-DRAW)%22)/21;pR=t;pA=Math.max(0,.5-t*.5);}
   ST.forEach((s,i)=>{
-    const x=sxs[i],done=i<ci,cur=i===ci,sk=done&&!s.ov,odd=i%2===1;
+    const x=sxs[i],done=i<ci,cur=i===ci,sk=done&&!s.ov;
     const dtStr=sk?'':(done&&s.ov?fmD(s.ov):fmD(dates[i]));
-    if(dtStr){ctx.fillStyle=done?'#374151':cur?'#dc2626':'#9ca3af';ctx.font=(cur?'bold ':'')+' 6px Arial';ctx.textAlign='center';ctx.fillText(dtStr,x,TY-14);}
-    if(cur&&pR>0){ctx.beginPath();ctx.arc(x,TY,4.5+pR*11,0,Math.PI*2);ctx.strokeStyle=`rgba(220,38,38,${pA})`;ctx.lineWidth=1.5;ctx.stroke();}
-    ctx.beginPath();ctx.arc(x,TY,4,0,Math.PI*2);ctx.fillStyle=sk?'#f1f5f9':done||cur?'#dc2626':'#e5e7eb';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();
-    const lineH=odd?12:3,lblY=TY+(odd?21:12);
-    ctx.fillStyle='#e5e7eb';ctx.fillRect(x-.5,TY+5,1,lineH);
-    ctx.fillStyle=sk?'#d1d5db':done?'#9ca3af':cur?'#dc2626':'#c4c9d4';
-    ctx.font=(cur?'bold ':'')+' 5.5px Arial';ctx.textAlign='center';ctx.fillText(s.n.toUpperCase(),x,lblY);
+    if(dtStr){ctx.fillStyle=done?'#9ca3af':cur?'#dc2626':'#374151';ctx.font=(cur?'bold ':'')+' 6px Arial';ctx.textAlign='center';ctx.fillText(dtStr,x,TY-14);}
+    if(cur&&pR>0){ctx.beginPath();ctx.arc(x,TY,10+pR*14,0,Math.PI*2);ctx.strokeStyle='rgba(100,100,100,'+pA+')';ctx.lineWidth=1.5;ctx.stroke();}
+    const r=cur?10:5;
+    ctx.beginPath();ctx.arc(x,TY,r,0,Math.PI*2);
+    ctx.fillStyle=sk?'#f1f5f9':done?'#dc2626':cur?'#111827':'#e5e7eb';
+    ctx.fill();
+    if(!cur){ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();}
+    ctx.fillStyle=sk?'#d1d5db':done?'#9ca3af':cur?'#111827':'#c4c9d4';
+    ctx.font=(cur?'bold ':'')+' 5.5px Arial';ctx.textAlign='center';
+    ctx.fillText(s.n.toUpperCase(),x,TY+22);
   });
-  const FY=H-12;
-  // ---- ETC + Status + Footer ----
-  ctx.save();
-  ctx.globalAlpha=1;
-  ctx.textAlign='left';
+  ctx.save();ctx.globalAlpha=1;ctx.textAlign='left';
   const _sc={'ON TRACK':'#10b981','AT RISK':'#f59e0b','DELAYED':'#ef4444'};
   const _rgb={'ON TRACK':'16,185,129','AT RISK':'245,158,11','DELAYED':'239,68,68'};
   const _stCol=_sc[cst]||'#10b981';
   const _stRgb=_rgb[cst]||'16,185,129';
-  // Separator line
-  ctx.fillStyle='#f3f4f6';ctx.fillRect(16,H-46,W-32,1);
-  // ETC label
+  const FY=H-13;
+  ctx.fillStyle='#f3f4f6';ctx.fillRect(16,H-48,W-32,1);
   ctx.fillStyle='#9ca3af';ctx.font='bold 9px Arial';ctx.fillText('ESTIMATED COMPLETION',TX+14,FY-16);
-  // Clock icon (circle with hands)
   ctx.strokeStyle='#9ca3af';ctx.lineWidth=1.2;
   ctx.beginPath();ctx.arc(TX+5,FY-4,4.5,0,Math.PI*2);ctx.stroke();
   ctx.beginPath();ctx.moveTo(TX+5,FY-4);ctx.lineTo(TX+5,FY-6.5);ctx.stroke();
   ctx.beginPath();ctx.moveTo(TX+5,FY-4);ctx.lineTo(TX+7,FY-4);ctx.stroke();
-  // ETC value - dark bold, matching .cfval #111827
-  ctx.fillStyle='#111827';ctx.font='bold 12px Arial';ctx.fillText(d2w(dd)+' · '+fmD(ed),TX+14,FY);
-  // Status label
-  const _sx=TX+210;
+  ctx.fillStyle='#111827';ctx.font='bold 12px Arial';
+  ctx.fillText('ETC: '+d2wFull(dd),TX+14,FY);
+  const _sx=TX+220;
   ctx.fillStyle='#9ca3af';ctx.font='bold 9px Arial';ctx.fillText('STATUS',_sx,FY-16);
-  // Status pulsing ring
   if(f>=DRAW){const _t=((f-DRAW)%22)/21;ctx.beginPath();ctx.arc(_sx+5,FY-4,5+_t*7,0,Math.PI*2);ctx.fillStyle='rgba('+_stRgb+','+Math.max(0,.25-_t*.25)+')';ctx.fill();}
-  // Status dot (solid, status color)
   ctx.beginPath();ctx.arc(_sx+5,FY-4,5,0,Math.PI*2);ctx.fillStyle=_stCol;ctx.fill();
-  // Status text (status color)
   ctx.fillStyle=_stCol;ctx.font='bold 12px Arial';ctx.fillText(cst,_sx+14,FY);
-  // Footer brand right-aligned
   ctx.font='bold 7px Arial';
-  const _bp=[['LINKED ','#808285'],['ERP','#dc2626'],['  x  ','#aaaaaa'],['ORACLE ','#cc0000'],['NetSuite','#1a1a1a']];
+  const _bp=[['LINKED ','#808285'],['ERP','#dc2626'],['  X  ','#aaaaaa'],['NETSUITE','#1a1a1a']];
   const _bw=_bp.reduce((a,p)=>a+ctx.measureText(p[0]).width,0);
   let _bx=W-14-_bw;_bp.forEach(([t,c])=>{ctx.fillStyle=c;ctx.fillText(t,_bx,FY);_bx+=ctx.measureText(t).width;});
   ctx.restore();
