@@ -547,16 +547,19 @@ function drawFrame(ctx,W,H,mIm,nIm,cIm,f,dates){
     const tickEnd=TY+tickDir*18;
     ctx.strokeStyle=done?'#e5e7eb':'#e5e7eb';ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(x,TY+tickDir*(baseR+1));ctx.lineTo(x,tickEnd);ctx.stroke();
+    // Clamp text x so first/last labels are not trimmed at canvas edges
+    const clampX=(txt)=>{const tw=ctx.measureText(txt).width;return Math.min(Math.max(x,6+tw/2),W-6-tw/2);};
     // Date
     if(dtStr){
       ctx.fillStyle=done?'#6b7280':cur?'#dc2626':'#374151';
-      ctx.font='bold 7px Arial';ctx.textAlign='center';
-      ctx.fillText(dtStr,x,above?TY-34:TY+34);
+      ctx.font='bold 8.5px Arial';ctx.textAlign='center';
+      ctx.fillText(dtStr,clampX(dtStr),above?TY-36:TY+38);
     }
     // Stage name label
-    ctx.fillStyle=sk?'#9ca3af':done?'#374151':cur?'#111827':'#374151';
-    ctx.font=(cur?'bold 8px':'7px')+' Arial';ctx.textAlign='center';
-    ctx.fillText(s.n.toUpperCase(),x,above?TY-22:TY+26);
+    const lbl=s.n.toUpperCase();
+    ctx.fillStyle=sk?'#9ca3af':cur?'#111827':'#1f2937';
+    ctx.font=(cur?'bold 10px':'bold 9px')+' Arial';ctx.textAlign='center';
+    ctx.fillText(lbl,clampX(lbl),above?TY-24:TY+28);
     ctx.restore();
     // Pulse ring behind dot
     if(cur&&pR>0){
